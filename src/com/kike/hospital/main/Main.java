@@ -1,13 +1,12 @@
-package com.kike.classicmodels.main;
+package com.kike.hospital.main;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kike.classicmodels.dtos.CantidadPedidaProducto;
-import com.kike.classicmodels.model.PedidosModel;
-import com.kike.classicmodels.vistas.MenuPrincipal;
-import com.kike.classicmodels.vistas.VistaClientes;
+
+import com.kike.hospital.vistas.MenuPrincipal;
+import com.kike.hospital.vistas.VistaAlergias;
 
 class Main {
 

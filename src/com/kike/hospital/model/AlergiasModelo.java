@@ -1,4 +1,4 @@
-package com.kike.classicmodels.model;
+package com.kike.hospital.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,51 +8,35 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kike.classicmodels.dtos.ClienteDTO;
-import com.kike.classicmodels.utils.DBUtils;
+import com.kike.hospital.dtos.AlergiaDTO;
+import com.kike.hospital.utils.DBUtils;
 
-public class ClientesModelo {
+public class AlergiasModelo {
 	
-	public  List<ClienteDTO> recuperaNombreTelefonoTodosClientes() throws ClassNotFoundException, SQLException {
-		Connection conexionBD = DBUtils.conexionBBDD();
-		
-		Statement statement = conexionBD.createStatement();
-		ResultSet clientes = statement.executeQuery("SELECT * FROM customers ");
-		
-		List<ClienteDTO> listaClientes = new ArrayList<>();
-		
-		while (clientes.next()) {
-			ClienteDTO c = new ClienteDTO(clientes.getString("customerName"), clientes.getString("phone"));
-			listaClientes.add(c);
-		}
-		conexionBD.close();
-		
-		return listaClientes;
-	}
+
 	
-	public List<ClienteDTO> recuperaNombreTelefonoFiltraporNombre (String nombre) throws ClassNotFoundException, SQLException {
+	public List<AlergiaDTO> buscaAlergia (String nombre) throws ClassNotFoundException, SQLException {
 		
-		String query = "SELECT * FROM customers where customerName LIKE ? ";
+		String query = "SELECT * FROM alergias where Descripcion LIKE ? ";
 		
 		Connection conexionBD = DBUtils.conexionBBDD();
 		
-		PreparedStatement ps  = conexionBD.prepareStatement(query); //Creamos el PreparedStatement pasándole el String de la query por parametro
-		ps.setString(1, "%" + nombre + "%"); //Seteamos el interrogante de la select. El primer parámetro indica la posición del ? (en este caso 
-											 //solo tenemos uno.
+		PreparedStatement ps  = conexionBD.prepareStatement(query); //Creamos el PreparedStatement pasÃ¡ndole el String de la query por parametro
+		ps.setString(1, "%" + nombre + "%"); 
 		
-		ResultSet clientes = ps.executeQuery();	//Ejecutamos la query sobre la BBDD	
-		List<ClienteDTO> listaClientes = new ArrayList<>(); //Creamos el arrayList para almacenar los resultados.
+		ResultSet alergiasRS = ps.executeQuery();	//Ejecutamos la query sobre la BBDD	
+		List<AlergiaDTO> listaAlergias = new ArrayList<>(); //Creamos el arrayList para almacenar los resultados.
 
-		while (clientes.next()) {
-			ClienteDTO c = new ClienteDTO(clientes.getString("customerName"), clientes.getString("phone"));
-			listaClientes.add(c);
+		while (alergiasRS.next()) {
+			AlergiaDTO c = new AlergiaDTO(alergiasRS.getInt("ID"), alergiasRS.getString("Descrip"));
+			listaAlergias.add(c);
 		}
 		conexionBD.close();
 		
-		return listaClientes;
+		return listaAlergias;
 	}
 	
-	public List<ClienteDTO> recuperaNombreTelefonoFiltraporNombreTfnoPais (String nombre, String tfno, String pais) throws ClassNotFoundException, SQLException {
+	public List<AlergiaDTO> recuperaNombreTelefonoFiltraporNombreTfnoPais (String nombre, String tfno, String pais) throws ClassNotFoundException, SQLException {
 		
 		String query = "SELECT * FROM customers where customerName LIKE ? OR phone LIKE ? OR country LIKE ? ";
 		
@@ -65,12 +49,12 @@ public class ClientesModelo {
 		ps.setString(3, "%" + pais + "%");
 		
 		ResultSet clientes = ps.executeQuery();	//Ejecutamos la query sobre la BBDD	
-		List<ClienteDTO> listaClientes = new ArrayList<>(); //Creamos el arrayList para almacenar los resultados.
+		List<AlergiaDTO> listaClientes = new ArrayList<>(); //Creamos el arrayList para almacenar los resultados.
 
-		while (clientes.next()) {
-			ClienteDTO c = new ClienteDTO(clientes.getString("customerName"), clientes.getString("phone"));
-			listaClientes.add(c);
-		}
+//		while (clientes.next()) {
+//			AlergiaDTO c = new AlergiaDTO(clientes.getString("customerName"), clientes.getString("phone"));
+//			listaClientes.add(c);
+//		}
 		conexionBD.close();
 		
 		return listaClientes;

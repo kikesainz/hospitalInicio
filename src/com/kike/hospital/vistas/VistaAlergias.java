@@ -1,30 +1,28 @@
-package com.kike.classicmodels.vistas;
+package com.kike.hospital.vistas;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-import com.kike.classicmodels.controllers.ClientesController;
-import com.kike.classicmodels.dtos.ClienteDTO;
-import com.kike.classicmodels.utils.MiScanner;
+import com.kike.hospital.controllers.ClientesController;
+import com.kike.hospital.dtos.AlergiaDTO;
+import com.kike.hospital.utils.MiScanner;
 
-public class VistaClientes {
+public class VistaAlergias {
 	
 	public void menuGeneralCliente() throws ClassNotFoundException, SQLException {
 	
 			Scanner sc = MiScanner.getInstance();
 			int n=0;
 			do{
-				System.out.println("Introduzca la operación que desee realizar: ");
+				System.out.println("Introduzca la operaciï¿½n que desee realizar: ");
 				
-			    System.out.println("       MENÚ PRINCIPAL PARA LA GESTIÓN DE CLIENTES");
+			    System.out.println("       MENï¿½ PRINCIPAL PARA LA GESTIï¿½N DE LA TABLA ALERGIAS");
 			    System.out.println("===============================================");
-			    System.out.println("1. Buscar cliente por nombre");
-			    System.out.println("2. Buscar cliente por nombre, teléfono o país");
-			    System.out.println("3. Insertar cliente ");
-			    System.out.println("4. Actualizar cliente ");
-			    System.out.println("5. Borrar cliente");
-			    System.out.println("6. Volver al menú principal");
+			    System.out.println("1. Buscar alergia");
+			    System.out.println("2. Insertar alergia");
+			    System.out.println("3. Actualizar alergia ");
+			    System.out.println("6. Volver al menÃº principal");
 			    System.out.println("===============================================");
 			    
 			    n = Integer.parseInt(sc.nextLine());
@@ -35,11 +33,11 @@ public class VistaClientes {
 	            }
 		    	
 	            if (n>6||n<1){
-	                System.out.print("Elección invalida, inténtalo otra vez...");
+	                System.out.print("ElecciÃ³n invÃ¡lida, intÃ©ntalo otra vez...");
 	                continue;
 	            }
 	            if ( n == 1) {
-	            	menuRecuperaNombreTelefono();
+	            	menuBuscaAlergia();
 	            	continue;
 	            }
 		    	
@@ -48,50 +46,28 @@ public class VistaClientes {
 	}
 
 	
-	public void menuRecuperaNombreTelefono() throws ClassNotFoundException, SQLException {
+	public void menuBuscaAlergia() throws ClassNotFoundException, SQLException {
 		Scanner sc = MiScanner.getInstance();
 		System.out.println("Introduzca por favor el nombre del cliente: ");
 		
 		String nombreEmpleado = sc.nextLine();
 		
 		ClientesController controladorClientes = new ClientesController();
-		List <ClienteDTO> listaClientes = controladorClientes.recuperaNombreTelefono(nombreEmpleado);
+//		List <AlergiaDTO> listaClientes = controladorClientes.recuperaNombreTelefono(nombreEmpleado);
 		
-		for (ClienteDTO cliente : listaClientes) {
-			System.out.println(cliente.getNombre() + " " + cliente.getTelefono());
-
-		}
-		
-	}
-	
-	public void menuRecuperaNombreTelefonoFiltrando() throws ClassNotFoundException, SQLException {
-		Scanner sc = MiScanner.getInstance();
-		System.out.println("Introduzca por favor el nombre del empleado a buscar: ");
-		
-		String nombreEmpleado = sc.nextLine();
-		
-		System.out.println("Introduzca por favor el teléfono del empleado a buscar: ");
-		
-		String telefonoEmpleado = sc.nextLine();
-		
-		System.out.println("Introduzca por favor el país del empleado a buscar: ");
-		
-		String paisEmpleado = sc.nextLine();
-		
-		ClientesController controladorClientes = new ClientesController();
-		List <ClienteDTO> listaClientes = controladorClientes.recuperaNombreTelefono(nombreEmpleado, telefonoEmpleado, paisEmpleado);
-		
-		for (ClienteDTO cliente : listaClientes) {
-			System.out.println(cliente.getNombre() + " " + cliente.getTelefono());
-
-		}
+//		for (AlergiaDTO cliente : listaClientes) {
+//			System.out.println();			System.out.println(cliente.getNombre() + " " + cliente.getTelefono());
+//
+//		}
 		
 	}
 	
-	public void menuInsertaCliente() throws ClassNotFoundException, SQLException {
+
+	
+	public void menuInsertaAlergia() throws ClassNotFoundException, SQLException {
 		Scanner sc = MiScanner.getInstance();
 		
-		System.out.println("Introduzca por favor el número del cliente: ");
+		System.out.println("Introduzca por favor el nombre de la alergia: ");
 		int  numeroCliente = Integer.parseInt(sc.nextLine());
 		System.out.println("Introduzca por favor el nombre del cliente: ");
 		String nombreCliente = sc.nextLine();		
@@ -99,17 +75,17 @@ public class VistaClientes {
 		String apellidoContacto = sc.nextLine();		
 		System.out.println("Introduzca por favor el nombre del contacto: ");
 		String nombreContacto = sc.nextLine();		
-		System.out.println("Introduzca por favor el teléfono del cliente: ");
+		System.out.println("Introduzca por favor el telï¿½fono del cliente: ");
 		String telefono = sc.nextLine();		
-		System.out.println("Introduzca por favor la dirección del cliente: ");
+		System.out.println("Introduzca por favor la direcciï¿½n del cliente: ");
 		String direccion1 = sc.nextLine();		
-		System.out.println("Introduzca por favor la dirección 2 del cliente: ");
+		System.out.println("Introduzca por favor la direcciï¿½n 2 del cliente: ");
 		String direccion2 = sc.nextLine();		
 		System.out.println("Introduzca por favor la ciudad del cliente: ");
 		String ciudad = sc.nextLine();		
 		System.out.println("Introduzca por favor el estado del cliente: ");
 		String estado = sc.nextLine();		
-		System.out.println("Introduzca por favor el código postal del cliente: ");
+		System.out.println("Introduzca por favor el cï¿½digo postal del cliente: ");
 		String codigoPostal = sc.nextLine();		
 		System.out.println("Introduzca por favor el pais: ");
 		String pais = sc.nextLine();		
@@ -118,14 +94,14 @@ public class VistaClientes {
 		try {
 		    representante = Integer.parseInt(sc.nextLine());
 		} catch (NumberFormatException e) {
-		    System.out.println("No se ha introducido número de representante de ventas");
+		    System.out.println("No se ha introducido nï¿½mero de representante de ventas");
 		}
-		System.out.println("Introduzca por favor crédito (número con decimales): ");
+		System.out.println("Introduzca por favor crï¿½dito (nï¿½mero con decimales): ");
 		Double credito = 0.0;
 		try {
 			credito = Double.parseDouble(sc.nextLine());
 		} catch (NumberFormatException e) {
-			System.out.println("No se ha introducido crédito");
+			System.out.println("No se ha introducido crï¿½dito");
 		}
 
 		
@@ -144,7 +120,7 @@ public class VistaClientes {
 											representante, 
 											credito);
 		if (resultado == 1) {
-			System.out.println("Se ha introducido el registro con éxito");
+			System.out.println("Se ha introducido el registro con ï¿½xito");
 		} else {
 			System.out.println("Se ha producido un error al introducir el registro");
 		}
@@ -154,7 +130,7 @@ public class VistaClientes {
 	public void menuActualizaCliente() throws ClassNotFoundException, SQLException {
 		Scanner sc = MiScanner.getInstance();
 		
-		System.out.println("Introduzca por favor el número del cliente a actualizar: ");
+		System.out.println("Introduzca por favor el nï¿½mero del cliente a actualizar: ");
 		int  numeroCliente = Integer.parseInt(sc.nextLine());		
 		System.out.println("Introduzca por favor el nombre del cliente: ");
 		String nombreCliente = sc.nextLine();		
@@ -162,17 +138,17 @@ public class VistaClientes {
 		String apellidoContacto = sc.nextLine();		
 		System.out.println("Introduzca por favor el nombre del contacto: ");
 		String nombreContacto = sc.nextLine();		
-		System.out.println("Introduzca por favor el teléfono del cliente: ");
+		System.out.println("Introduzca por favor el telï¿½fono del cliente: ");
 		String telefono = sc.nextLine();		
-		System.out.println("Introduzca por favor la dirección del cliente: ");
+		System.out.println("Introduzca por favor la direcciï¿½n del cliente: ");
 		String direccion1 = sc.nextLine();		
-		System.out.println("Introduzca por favor la dirección 2 del cliente: ");
+		System.out.println("Introduzca por favor la direcciï¿½n 2 del cliente: ");
 		String direccion2 = sc.nextLine();		
 		System.out.println("Introduzca por favor la ciudad del cliente: ");
 		String ciudad = sc.nextLine();		
 		System.out.println("Introduzca por favor el estado del cliente: ");
 		String estado = sc.nextLine();		
-		System.out.println("Introduzca por favor el código postal del cliente: ");
+		System.out.println("Introduzca por favor el cï¿½digo postal del cliente: ");
 		String codigoPostal = sc.nextLine();		
 		System.out.println("Introduzca por favor el pais: ");
 		String pais = sc.nextLine();		
@@ -181,14 +157,14 @@ public class VistaClientes {
 		try {
 		    representante = Integer.parseInt(sc.nextLine());
 		} catch (NumberFormatException e) {
-		    System.out.println("No se ha introducido número de representante de ventas");
+		    System.out.println("No se ha introducido nï¿½mero de representante de ventas");
 		}
-		System.out.println("Introduzca por favor crédito (número con decimales): ");
+		System.out.println("Introduzca por favor crï¿½dito (nï¿½mero con decimales): ");
 		Double credito = 0.0;
 		try {
 			credito = Double.parseDouble(sc.nextLine());
 		} catch (NumberFormatException e) {
-			System.out.println("No se ha introducido crédito");
+			System.out.println("No se ha introducido crï¿½dito");
 		}
 		
 		ClientesController controladorClientes = new ClientesController();
@@ -206,9 +182,9 @@ public class VistaClientes {
 											representante, 
 											credito);
 		if (resultado == 1) {
-			System.out.println("Se ha actualizado el cliente con el número: " + numeroCliente +" con éxito");
+			System.out.println("Se ha actualizado el cliente con el nï¿½mero: " + numeroCliente +" con ï¿½xito");
 		} else {
-			System.out.println("Se ha producido un error al actualizar el cliente con el número: "+ numeroCliente);
+			System.out.println("Se ha producido un error al actualizar el cliente con el nï¿½mero: "+ numeroCliente);
 		}
 		
 	}
@@ -216,16 +192,16 @@ public class VistaClientes {
 	public void menuBorraCliente() throws ClassNotFoundException, SQLException {
 		Scanner sc = MiScanner.getInstance();
 		
-		System.out.println("Introduzca por favor el número del cliente a borrar: ");
+		System.out.println("Introduzca por favor el nï¿½mero del cliente a borrar: ");
 		int  numeroCliente = Integer.parseInt(sc.nextLine());	
 		
 		ClientesController controladorClientes = new ClientesController();
 		int resultado = controladorClientes.borrarCliente(numeroCliente);
 		
 		if (resultado == 1) {
-			System.out.println("Se ha borrado el cliente con el número: " + numeroCliente +" con éxito");
+			System.out.println("Se ha borrado el cliente con el nï¿½mero: " + numeroCliente +" con ï¿½xito");
 		} else {
-			System.out.println("Se ha producido un error al borrar el cliente con el número: "+ numeroCliente);
+			System.out.println("Se ha producido un error al borrar el cliente con el nï¿½mero: "+ numeroCliente);
 		}
 	
 	}

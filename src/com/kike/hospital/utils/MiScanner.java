@@ -1,4 +1,4 @@
-package com.kike.classicmodels.utils;
+package com.kike.hospital.utils;
 
 import java.util.Scanner;
 
