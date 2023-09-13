@@ -48,7 +48,10 @@ public class VistaAlergias {
 	
 	public void menuBuscaAlergia() throws ClassNotFoundException, SQLException {
 		Scanner sc = MiScanner.getInstance();
-		System.out.println("Introduzca por favor el nombre del cliente: ");
+		System.out.println("Introduzca por favor el id de la alergia: ");
+		Integer id = sc.nextInt();
+		sc.nextLine();
+		System.out.println("Introduzca por favor el nombre de la alergia: ");
 		
 		String nombreEmpleado = sc.nextLine();
 		
