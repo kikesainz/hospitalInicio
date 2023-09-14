@@ -21,24 +21,28 @@ public class AlergiaDTO {
 
 
 
-	public Integer getNombre() {
+	public Integer getId() {
 		return id;
 	}
 
 
 
-	public void setNombre(Integer nombre) {
-		this.id = nombre;
+	public void setId(Integer id) {
+		this.id = id;
 	}
+
+
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 
+
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
+
+
 	
 }

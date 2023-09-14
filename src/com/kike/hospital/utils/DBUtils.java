@@ -12,7 +12,7 @@ public class DBUtils {
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		String servidor = "jdbc:mysql://localhost:3306/hospital";
 		String username = "root"; 
-		String password = "819130"; 
+		String password = "PracticaRoot"; 
 		Connection conexionBD = DriverManager.getConnection(servidor, username, password);
 		return conexionBD;
 	}

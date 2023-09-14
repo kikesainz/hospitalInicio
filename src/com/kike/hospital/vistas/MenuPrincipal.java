@@ -34,8 +34,8 @@ public class MenuPrincipal {
 	    n = Integer.parseInt(sc.nextLine());
 	   
 	    	
-            if (n>7||n<1){
-                System.out.print("Elección invalida, int�ntalo otra vez...");
+            if (n>14||n<1){
+                System.out.print("Elección invalida, inténtalo otra vez...");
                 continue;
             }
             if ( n == 2) {
@@ -43,9 +43,9 @@ public class MenuPrincipal {
             	continue;
             }
             
-            if ( n == 3) {
+            if ( n == 11) {
             	VistaAlergias vc = new VistaAlergias();
-            	vc.menuGeneralCliente();
+            	vc.menuGeneralAlergias();
             	continue;
             }
 

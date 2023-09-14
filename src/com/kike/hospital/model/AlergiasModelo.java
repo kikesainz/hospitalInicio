@@ -15,14 +15,15 @@ public class AlergiasModelo {
 	
 
 	
-	public List<AlergiaDTO> buscaAlergia (String nombre) throws ClassNotFoundException, SQLException {
+	public List<AlergiaDTO> buscaAlergia (String id, String nombre) throws ClassNotFoundException, SQLException {
 		
 		String query = "SELECT * FROM alergias where Descripcion LIKE ? ";
 		
 		Connection conexionBD = DBUtils.conexionBBDD();
 		
 		PreparedStatement ps  = conexionBD.prepareStatement(query); //Creamos el PreparedStatement pasándole el String de la query por parametro
-		ps.setString(1, "%" + nombre + "%"); 
+		ps.setString(1, "%" + id + "%"); 
+		ps.setString(2, "%" + nombre + "%"); 
 		
 		ResultSet alergiasRS = ps.executeQuery();	//Ejecutamos la query sobre la BBDD	
 		List<AlergiaDTO> listaAlergias = new ArrayList<>(); //Creamos el arrayList para almacenar los resultados.
@@ -35,38 +36,11 @@ public class AlergiasModelo {
 		
 		return listaAlergias;
 	}
-	
-	public List<AlergiaDTO> recuperaNombreTelefonoFiltraporNombreTfnoPais (String nombre, String tfno, String pais) throws ClassNotFoundException, SQLException {
-		
-		String query = "SELECT * FROM customers where customerName LIKE ? OR phone LIKE ? OR country LIKE ? ";
-		
-		Connection conexionBD = DBUtils.conexionBBDD();
-		
-		PreparedStatement ps  = conexionBD.prepareStatement(query);
-		
-		ps.setString(1, "%" + nombre + "%"); 
-		ps.setString(2, "%" + tfno + "%");
-		ps.setString(3, "%" + pais + "%");
-		
-		ResultSet clientes = ps.executeQuery();	//Ejecutamos la query sobre la BBDD	
-		List<AlergiaDTO> listaClientes = new ArrayList<>(); //Creamos el arrayList para almacenar los resultados.
 
-//		while (clientes.next()) {
-//			AlergiaDTO c = new AlergiaDTO(clientes.getString("customerName"), clientes.getString("phone"));
-//			listaClientes.add(c);
-//		}
-		conexionBD.close();
-		
-		return listaClientes;
-	}
 	
-	public Integer insertarCliente(int numerocliente, String nombreCliente, String apellidoContacto, String nombreContacto,
-			String telefono, String direccion1, String direccion2, String ciudad, String estado,
-			String codigoPostal, String pais, int representante, Double credito) throws SQLException, ClassNotFoundException {
+	public Integer insertarCliente( String nombreAlergia) throws SQLException, ClassNotFoundException {
 
-		String sql = "INSERT INTO customers (customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1,"
-					+ " addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit ) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO algergias (Descripcion ) VALUES (?)";
 		
 		Connection connection = DBUtils.conexionBBDD();
 		PreparedStatement ps = null;
@@ -75,19 +49,9 @@ public class AlergiasModelo {
 		
 		ps = connection.prepareStatement(sql);
 		
-		ps.setInt(1, numerocliente);
-		ps.setString(2, nombreCliente);
-		ps.setString(3, apellidoContacto);
-		ps.setString(4, nombreContacto);
-		ps.setString(5, telefono);
-		ps.setString(6, direccion1);
-		ps.setString(7, direccion2);
-		ps.setString(8, ciudad);
-		ps.setString(9, estado);
-		ps.setString(10, codigoPostal);
-		ps.setString(11, pais);
-		ps.setInt(12, representante);
-		ps.setDouble(13, credito);
+
+		ps.setString(1, nombreAlergia);
+
 		
 		resultado = ps.executeUpdate();
 		
