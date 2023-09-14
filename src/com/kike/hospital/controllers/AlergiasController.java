@@ -16,12 +16,10 @@ public class AlergiasController {
 	}
 	
 	
-	public Integer insertarCliente(int numerocliente, String nombreCliente, String apellidoContacto, String nombreContacto,
-			String telefono, String direccion1, String direccion2, String ciudad, String estado,
-			String codigoPostal, String pais, int representante, Double credito) throws ClassNotFoundException, SQLException {
+	public Integer insertarAlergia(String nombreAlergia) throws ClassNotFoundException, SQLException {
 		
 		AlergiasModelo cm = new AlergiasModelo();
-		return cm.insertarCliente(nombreCliente);
+		return cm.insertarAlergia(nombreAlergia);
 	}
 	
 	public Integer actualizarCliente(int numerocliente, String nombreCliente, String apellidoContacto, String nombreContacto,

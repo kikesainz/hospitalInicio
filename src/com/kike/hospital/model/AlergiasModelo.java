@@ -17,7 +17,7 @@ public class AlergiasModelo {
 	
 	public List<AlergiaDTO> buscaAlergia (String id, String nombre) throws ClassNotFoundException, SQLException {
 		
-		String query = "SELECT * FROM alergias where Descripcion LIKE ? ";
+		String query = "SELECT * from alergias where CAST(ID AS CHAR) LIKE ? AND Descripcion LIKE ? ";
 		
 		Connection conexionBD = DBUtils.conexionBBDD();
 		
@@ -25,11 +25,12 @@ public class AlergiasModelo {
 		ps.setString(1, "%" + id + "%"); 
 		ps.setString(2, "%" + nombre + "%"); 
 		
+		System.out.println(ps.toString());
 		ResultSet alergiasRS = ps.executeQuery();	//Ejecutamos la query sobre la BBDD	
 		List<AlergiaDTO> listaAlergias = new ArrayList<>(); //Creamos el arrayList para almacenar los resultados.
 
 		while (alergiasRS.next()) {
-			AlergiaDTO c = new AlergiaDTO(alergiasRS.getInt("ID"), alergiasRS.getString("Descrip"));
+			AlergiaDTO c = new AlergiaDTO(alergiasRS.getInt("ID"), alergiasRS.getString("Descripcion"));
 			listaAlergias.add(c);
 		}
 		conexionBD.close();
@@ -38,9 +39,9 @@ public class AlergiasModelo {
 	}
 
 	
-	public Integer insertarCliente( String nombreAlergia) throws SQLException, ClassNotFoundException {
+	public Integer insertarAlergia( String nombreAlergia) throws SQLException, ClassNotFoundException {
 
-		String sql = "INSERT INTO algergias (Descripcion ) VALUES (?)";
+		String sql = "INSERT INTO alergias (Descripcion ) VALUES (?)";
 		
 		Connection connection = DBUtils.conexionBBDD();
 		PreparedStatement ps = null;

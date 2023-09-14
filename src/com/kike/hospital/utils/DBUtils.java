@@ -10,7 +10,7 @@ public class DBUtils {
 	public static Connection conexionBBDD() throws ClassNotFoundException, SQLException {
 
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
-		String servidor = "jdbc:mysql://localhost:3306/hospital";
+		String servidor = "jdbc:mysql://localhost:3306/hospital?serverTimezone=UTC";
 		String username = "root"; 
 		String password = "PracticaRoot"; 
 		Connection conexionBD = DriverManager.getConnection(servidor, username, password);

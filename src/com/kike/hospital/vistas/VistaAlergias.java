@@ -40,6 +40,11 @@ public class VistaAlergias {
 	            	menuBuscaAlergia();
 	            	continue;
 	            }
+	            
+	            if ( n == 2) {
+	            	menuInsertaAlergia();
+	            	continue;
+	            }
 		    	
 		    } while(n!=6);
 		
@@ -75,14 +80,14 @@ public class VistaAlergias {
 
 
 		
-//		AlergiasController controladorClientes = new AlergiasController();
-//		int resultado = controladorClientes.insertarCliente(nombreAlergia);
-//		if (resultado == 1) {
-//			System.out.println("Se ha introducido el registro con �xito");
-//		} else {
-//			System.out.println("Se ha producido un error al introducir el registro");
-//		}
-//		
+		AlergiasController controladorAlergias = new AlergiasController();
+		int resultado = controladorAlergias.insertarAlergia(nombreAlergia);
+		if (resultado == 1) {
+			System.out.println("Se ha introducido el registro con éxito");
+		} else {
+			System.out.println("Se ha producido un error al introducir el registro");
+		}
+	
 	}
 //	
 //	public void menuActualizaCliente() throws ClassNotFoundException, SQLException {
