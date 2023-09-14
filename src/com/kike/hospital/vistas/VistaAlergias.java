@@ -17,8 +17,8 @@ public class VistaAlergias {
 			do{
 				System.out.println("Introduzca la operación que desee realizar: ");
 				
-			    System.out.println("       MENÚ PRINCIPAL PARA LA GESTI�N DE LA TABLA ALERGIAS");
-			    System.out.println("===============================================");
+			    System.out.println("       MENÚ PRINCIPAL PARA LA GESTIÓN DE LA TABLA ALERGIAS");
+			    System.out.println("===========================================================");
 			    System.out.println("1. Buscar alergia");
 			    System.out.println("2. Insertar alergia");
 			    System.out.println("3. Actualizar alergia ");

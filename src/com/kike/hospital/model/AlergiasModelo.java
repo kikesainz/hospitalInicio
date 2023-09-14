@@ -25,7 +25,7 @@ public class AlergiasModelo {
 		ps.setString(1, "%" + id + "%"); 
 		ps.setString(2, "%" + nombre + "%"); 
 		
-		System.out.println(ps.toString());
+//		System.out.println(ps.toString());
 		ResultSet alergiasRS = ps.executeQuery();	//Ejecutamos la query sobre la BBDD	
 		List<AlergiaDTO> listaAlergias = new ArrayList<>(); //Creamos el arrayList para almacenar los resultados.
 
