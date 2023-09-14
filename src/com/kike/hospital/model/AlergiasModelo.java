@@ -61,23 +61,10 @@ public class AlergiasModelo {
 		return resultado;
 		}
 	
-	public Integer actualizarCliente(int numerocliente, String nombreCliente, String apellidoContacto, String nombreContacto,
-			String telefono, String direccion1, String direccion2, String ciudad, String estado,
-			String codigoPostal, String pais, int representante, Double credito) throws SQLException, ClassNotFoundException {
+	public Integer actualizarAlergia(Integer id, String nombreAlergia) throws SQLException, ClassNotFoundException {
 
-		String sql = "UPDATE customers SET customerName = CASE WHEN ? = '' THEN customerName ELSE ? END,"
-				+ "contactLastName  = CASE WHEN ? = '' THEN contactLastName ELSE ? END,"
-				+ "contactFirstName = CASE WHEN ? = '' THEN contactFirstName ELSE ? END, "
-				+ "phone = CASE WHEN ? = '' THEN phone ELSE ? END, "
-				+ "addressLine1 = CASE WHEN ? = '' THEN addressLine1 ELSE ? END, "
-				+ "addressLine2 = CASE WHEN ? = '' THEN addressLine2 ELSE ? END, "
-				+ "city = CASE WHEN ? = '' THEN city ELSE ? END, "
-				+ "state = CASE WHEN ? = '' THEN state ELSE ? END, "
-				+ "postalCode = CASE WHEN ? = '' THEN postalCode ELSE ? END, "
-				+ "country = CASE WHEN ? = '' THEN country ELSE ? END, "
-				+ "salesRepEmployeeNumber = CASE WHEN ? = '' THEN salesRepEmployeeNumber ELSE ? END, "
-				+ "creditLimit = CASE WHEN ? = '' THEN creditLimit ELSE ? END  "
-				+ "WHERE customerNumber = ?";
+		String sql = "UPDATE alergias SET Descripcion = CASE WHEN ? = '' THEN Descripcion ELSE ? END "
+				+ "WHERE ID = ?";
 		
 		Connection connection = DBUtils.conexionBBDD();
 		PreparedStatement ps = null;
@@ -86,43 +73,11 @@ public class AlergiasModelo {
 		
 		ps = connection.prepareStatement(sql);		
 
-		ps.setString(1, nombreCliente);
-		ps.setString(2, nombreCliente);
+		ps.setString(1, nombreAlergia);
+		ps.setString(2, nombreAlergia);
+		ps.setInt(3, id);
 		
-		ps.setString(3, apellidoContacto);
-		ps.setString(4, apellidoContacto);
-		
-		ps.setString(5, nombreContacto);
-		ps.setString(6, nombreContacto);
-		
-		ps.setString(7, telefono);
-		ps.setString(8, telefono);
-		
-		ps.setString(9, direccion1);
-		ps.setString(10, direccion1);
-		
-		ps.setString(11, direccion2);
-		ps.setString(12, direccion2);
-		
-		ps.setString(13, ciudad);
-		ps.setString(14, ciudad);
-		
-		ps.setString(15, estado);
-		ps.setString(16, estado);
-		
-		ps.setString(17, codigoPostal);
-		ps.setString(18, codigoPostal);
-		
-		ps.setString(19, pais);
-		ps.setString(20, pais);
-		
-		ps.setInt(21, representante);
-		ps.setInt(22, representante);
-		
-		ps.setDouble(23, credito);
-		ps.setDouble(24, credito);
-		
-		ps.setInt(25,  numerocliente);
+
 		
 		resultado = ps.executeUpdate();
 		

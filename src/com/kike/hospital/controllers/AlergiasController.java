@@ -22,13 +22,10 @@ public class AlergiasController {
 		return cm.insertarAlergia(nombreAlergia);
 	}
 	
-	public Integer actualizarCliente(int numerocliente, String nombreCliente, String apellidoContacto, String nombreContacto,
-			String telefono, String direccion1, String direccion2, String ciudad, String estado,
-			String codigoPostal, String pais, int representante, Double credito) throws ClassNotFoundException, SQLException {
+	public Integer actualizarAlergia(Integer id, String nombreAlergia) throws ClassNotFoundException, SQLException {
 		
 		AlergiasModelo cm = new AlergiasModelo();
-		return cm.actualizarCliente(numerocliente, nombreCliente, apellidoContacto, nombreContacto, telefono, direccion1, direccion2, 
-									ciudad, estado, codigoPostal, pais, representante, credito);
+		return cm.actualizarAlergia(id, nombreAlergia);
 	}
 	
 	public Integer borrarCliente(int numerocliente) throws ClassNotFoundException, SQLException {
